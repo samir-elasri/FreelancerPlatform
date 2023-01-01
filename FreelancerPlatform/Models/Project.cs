@@ -29,5 +29,6 @@ namespace FreelancerPlatform.Models
         public Category Category { get; set; }
         public ICollection<Task> Tasks { get; set; }
         public ICollection<Comment>? Comments { get; set; }
+        public ICollection<Request>? Requests { get; set; }
     }
 }

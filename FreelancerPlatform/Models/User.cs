@@ -22,5 +22,8 @@ namespace FreelancerPlatform.Models
 
         [Required]
         public bool IsAdmin { get; set; } = false;
+
+        public ICollection<Project>? Projects { get; set; }
+        public ICollection<Request>? Requests { get; set; }
     }
 }
