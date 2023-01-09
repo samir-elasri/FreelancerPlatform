@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreelancerPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230101191539_AddModelsToDatabase")]
+    [Migration("20230108214857_AddModelsToDatabase")]
     partial class AddModelsToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,7 @@ namespace FreelancerPlatform.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -85,7 +85,6 @@ namespace FreelancerPlatform.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("FreelancerId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -164,9 +163,6 @@ namespace FreelancerPlatform.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -176,6 +172,10 @@ namespace FreelancerPlatform.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -206,9 +206,7 @@ namespace FreelancerPlatform.Migrations
 
                     b.HasOne("FreelancerPlatform.Models.User", "Freelancer")
                         .WithMany("Projects")
-                        .HasForeignKey("FreelancerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FreelancerId");
 
                     b.Navigation("Category");
 

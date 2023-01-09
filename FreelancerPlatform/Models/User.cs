@@ -21,7 +21,7 @@ namespace FreelancerPlatform.Models
         public string Password { get; set; }
 
         [Required]
-        public bool IsAdmin { get; set; } = false;
+        public string UserType { get; set; } = "freelancer";
 
         public ICollection<Project>? Projects { get; set; }
         public ICollection<Request>? Requests { get; set; }
