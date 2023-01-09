@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
@@ -16,9 +17,10 @@ namespace FreelancerPlatform.Models
         [Required]
         [StringLength(10000)]
         public string Description { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        [Required]
+        [DefaultValue(true)]
+        public DateTime? CreatedAt { get; set; } = DateTime.Now;
+
         [ForeignKey("Freelancer")]
         public int? FreelancerId { get; set; }
         public User? Freelancer { get; set; }
@@ -30,5 +32,10 @@ namespace FreelancerPlatform.Models
         public ICollection<Task> Tasks { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<Request>? Requests { get; set; }
+
+        public Project()
+        {
+            CreatedAt = DateTime.Now;
+        }
     }
 }
