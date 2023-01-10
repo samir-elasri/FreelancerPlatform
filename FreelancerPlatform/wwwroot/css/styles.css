@@ -1,0 +1,260 @@
+﻿body {
+    font-family: 'Montserrat' sans-serif;
+}
+
+@media only screen and (min-width:1200px) {
+    .nav-item > .nav-link {
+        padding: 5px 20px !important;
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width:992px) {
+    .content-banner {
+        background-image: url("../images/bg.png") !important;
+    }
+
+    .header-inner {
+        background-color: rgb(255, 255, 255) !important;
+    }
+
+    .nav-item > .nav-link {
+        color: black !important
+    }
+
+    .logo {
+        color: #000 !important;
+        font-weight: 600 !important;
+    }
+
+    .content-banner .first-title {
+        font-size: 30px !important;
+    }
+}
+
+.content-banner {
+    color: #030303;
+    background-image: url("../images/acceuil.png");
+    min-height: 600px;
+    height: 100%;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    padding-top: 125px;
+}
+
+    .content-banner:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .content-banner .first-title {
+        font-size: 44px;
+        font-weight: 400;
+        line-height: 1.2;
+        position: relative;
+        z-index: 2;
+        margin: 0px 0px 12px;
+    }
+
+    .content-banner .banner-des {
+        font-size: 40px;
+        line-height: 150%;
+        letter-spacing: 0;
+        position: relative;
+        z-index: 2;
+        font-weight: 400;
+        margin-top: 0;
+    }
+
+.banner-btn {
+    padding: 0 34px;
+    z-index: 1;
+    margin: 30px auto 25px;
+    line-height: 56px;
+    position: relative;
+    border-radius: 6px;
+    height: 56px;
+    font-size: 16px;
+    background-color: #579cd7;
+    display: inline-block;
+    color: #ffffff;
+    transition: 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+    .banner-btn:hover {
+        text-decoration: none;
+        color: #000;
+        background-color: #d4d9de;
+    }
+
+
+.header {
+    position: relative;
+    width: 100%;
+}
+
+.header-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    background-color: #101728;
+}
+
+.logo {
+    color: #ffffff;
+}
+
+.nav-item .nav-link {
+    display: block;
+    line-height: 36px;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    transition: 0.15s;
+}
+
+    .nav-item .nav-link:hover {
+        color: #579cd7;
+    }
+
+.header-btn {
+    color: #ffffff;
+    border-radius: 30px;
+    background-color: #579cd7;
+    border: none;
+    font-weight: 500;
+    outline: none;
+    font-size: 15px;
+    padding: 7px 22px;
+    transition: 0.5s;
+}
+
+    .header-btn:hover {
+        background-color: #d4d9de;
+        color: #000;
+        cursor: pointer;
+    }
+
+.headeer-btn {
+    color: #000000;
+    border-radius: 30px;
+    background-color: #d4d9de;
+    border: 2px solid #579cd7;
+    font-weight: 500;
+    outline: none;
+    font-size: 15px;
+    padding: 7px 22px;
+    transition: 0.5s;
+}
+
+    .headeer-btn:hover {
+        background-color: #579cd7;
+        color: #fff;
+        cursor: pointer;
+    }
+
+.navbar-scroll {
+    background-color: #ffffff;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.4);
+    transition-duration: 0.6s;
+}
+
+    .navbar-scroll .nav-item .nav-link {
+        color: black;
+    }
+
+    .navbar-scroll .header-btn {
+        color: #ffffff;
+        background-color: #579cd7;
+    }
+
+    .navbar-scroll .logo {
+        color: #000;
+        font-weight: 500;
+    }
+
+.first-title {
+    text-transform: capitalize;
+}
+
+footer {
+    background: #101728;
+    padding: 86px 0;
+}
+
+.single-content {
+    text-align: center;
+    padding: 115px 0;
+}
+
+.single-box p {
+    color: #fff;
+    line-height: 1.9;
+}
+
+.single-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.single-box .card-area i {
+    color: #ffffff;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.single-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .single-box ul li a {
+        text-decoration: none;
+        color: #fff;
+        line-height: 2.5;
+        font-weight: 100;
+    }
+
+.single-box h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#basic-addon2 {
+    background: #579cd7;
+    color: #fff;
+}
+
+.socials i {
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+    .single-box {
+        margin-bottom: 50px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .single-box {
+        margin-bottom: 50px;
+    }
+}

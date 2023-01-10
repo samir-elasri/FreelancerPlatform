@@ -18,8 +18,7 @@ namespace FreelancerPlatform.Models
         [StringLength(10000)]
         public string Description { get; set; }
 
-        [DefaultValue(true)]
-        public DateTime? CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? CreatedDate { get; set; }
 
         [ForeignKey("Freelancer")]
         public int? FreelancerId { get; set; }
@@ -33,9 +32,6 @@ namespace FreelancerPlatform.Models
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<Request>? Requests { get; set; }
 
-        public Project()
-        {
-            CreatedAt = DateTime.Now;
-        }
+        
     }
 }

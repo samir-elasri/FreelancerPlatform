@@ -25,5 +25,7 @@ namespace FreelancerPlatform.Models
 
         public ICollection<Project>? Projects { get; set; }
         public ICollection<Request>? Requests { get; set; }
+
+        
     }
 }
