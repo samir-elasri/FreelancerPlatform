@@ -59,16 +59,20 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Title,Description,CategoryId")] Project project)
+        public async Task<IActionResult> Create([Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+                project.CreatedDate = DateTime.Now;
+                project.Freelancer = null;
+                project.FreelancerId = null;
+
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", project.CategoryId);
-            //ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email", project.FreelancerId);
+            ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email", project.FreelancerId);
             return View(project);
         }
 
@@ -95,7 +99,7 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Title,Description,CreatedAt,FreelancerId,CategoryId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
         {
             if (id != project.id)
             {

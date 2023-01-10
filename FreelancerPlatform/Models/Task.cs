@@ -20,5 +20,7 @@ namespace FreelancerPlatform.Models
         [ForeignKey("Project")]
         public int ProjectId { get; set; }
         public Project Project { get; set; }
+
+        
     }
 }

@@ -20,5 +20,7 @@ namespace FreelancerPlatform.Models
 
         [Required]
         public bool Approved { get; set; } = false;
+
+        
     }
 }

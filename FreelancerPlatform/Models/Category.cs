@@ -12,5 +12,7 @@ namespace FreelancerPlatform.Models
         public string Name { get; set; }
 
         public ICollection<Project> Projects { get; set; }
+
+        
     }
 }
