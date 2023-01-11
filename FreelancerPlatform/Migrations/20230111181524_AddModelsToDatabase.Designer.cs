@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreelancerPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230110213535_AddModelsToDatabase")]
+    [Migration("20230111181524_AddModelsToDatabase")]
     partial class AddModelsToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,18 +130,13 @@ namespace FreelancerPlatform.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(10000)
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

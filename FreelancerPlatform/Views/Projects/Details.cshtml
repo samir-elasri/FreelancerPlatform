@@ -41,6 +41,15 @@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
     </dl>
+
+    <h4>List of tasks:</h4>
+    <ul>
+        @foreach (FreelancerPlatform.Models.Task t in Model.Tasks)
+        {
+            <li>@Html.DisplayFor(tTitle => t.Title)</li>
+        }
+    </ul>
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
