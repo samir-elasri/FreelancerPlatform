@@ -1,16 +1,16 @@
 ﻿@model FreelancerPlatform.Models.Project
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "View";
 }
 
-<h1>Create</h1>
+<h1>View</h1>
 
 <h4>Project</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4 mx-auto">
-        <form asp-action="Create">
+    <div class="col-md-4">
+        <form asp-action="View">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -19,36 +19,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea cols="10" asp-for="Description" class="form-control" placeholder="Saisir une courte description" style="resize: none"></textarea>
+                <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="CreatedDate" class="control-label"></label>
-                <input hidden asp-for="CreatedDate" class="form-control" />
+                <input asp-for="CreatedDate" class="form-control" />
                 <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
+            </div>
+            <div class="form-group">
                 <label asp-for="FreelancerId" class="control-label"></label>
                 <select asp-for="FreelancerId" class ="form-control" asp-items="ViewBag.FreelancerId"></select>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
                 <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="Tasks" class="control-label"></label>
-                <textarea cols="10" asp-for="Tasks" class="form-control" placeholder="Saisir les taches séparés par des virgules" style="resize: none"></textarea>
-            </div>*@
-            <h3> Tasks:</h3>
-            <div id="tasks-container">
-                <div id="task-template" style="display: none;">
-                    <div>
-                        <label>Task:</label>
-                        <input name="Tasks[#index#].Title" type="text" />
-                        <button type="button" onclick="removeTask(this)">Remove</button>
-                    </div>
-                </div>
-                <button type="button" onclick="addTask()">Add Task</button>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -61,6 +46,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@*@section Scripts {
+@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+}

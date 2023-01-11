@@ -37,6 +37,7 @@ namespace FreelancerPlatform.Controllers
             var project = await _context.Projects
                 .Include(p => p.Category)
                 .Include(p => p.Freelancer)
+                .Include(p => p.Tasks)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (project == null)
             {
@@ -59,17 +60,30 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
+        public async Task<IActionResult> Create([Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project, List<Models.Task> tasks/*, IFormCollection form*/)
         {
             //if (ModelState.IsValid)
             //{
-                project.CreatedDate = DateTime.Now;
-                project.Freelancer = null;
-                project.FreelancerId = null;
+            project.CreatedDate = DateTime.Now;
+            project.Freelancer = null;
+            project.FreelancerId = null;
 
-                _context.Add(project);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            //project.Description = form["Tasks"];
+            //_context.Tasks.AddRange(tasks);
+
+            _context.Add(project);
+            await _context.SaveChangesAsync();
+
+            var projectId = project.id;
+            for (var i = 0; i < tasks.Count; i++)
+            {
+                tasks[i].ProjectId = projectId;
+                _context.Tasks.Add(tasks[i]);
+            }
+            //_context.Tasks.AddRange(tasks);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
             //}
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", project.CategoryId);
             ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email", project.FreelancerId);
