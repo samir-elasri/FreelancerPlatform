@@ -50,7 +50,30 @@
         }
     </ul>
 
+    <h4>Comments:</h4>
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>
+                <b>Comment:</b> @comment.Text <br />
+            </li>
+        }
+    </ul>
+
+    <h4>Add a comment:</h4>
+    <form asp-controller="Projects" asp-action="CreateComment" method="post">
+        <input type="hidden" name="ProjectId" value="@Model.id" />
+        <div class="form-group">
+            <label for="Text">Comment: </label>
+            <textarea name="Text" class="form-control"></textarea>
+        </div>
+        <input type="submit" value="Post comment" class="btn btn-primary" />
+    </form>
 </div>
+
+
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
     <a asp-action="Index">Back to List</a>

@@ -38,6 +38,7 @@ namespace FreelancerPlatform.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.Freelancer)
                 .Include(p => p.Tasks)
+                .Include(p => p.Comments)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (project == null)
             {
@@ -45,6 +46,25 @@ namespace FreelancerPlatform.Controllers
             }
 
             return View(project);
+        }
+
+        // Function to add comments to a project in its Details view:
+        [HttpPost]
+        public async Task<IActionResult> CreateComment(IFormCollection form)
+        {
+            int Id = Int32.Parse(form["ProjectId"]);
+            var project = await _context.Projects.FindAsync(Id);
+            if (project != null)
+            {
+                Comment comment = new Comment();
+                comment.Text = form["Text"];
+                comment.Project = project;
+
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", new { id = Id });
+            }
+            return NotFound();
         }
 
         // GET: Projects/Create

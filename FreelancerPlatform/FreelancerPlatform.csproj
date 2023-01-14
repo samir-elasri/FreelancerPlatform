@@ -45,6 +45,7 @@
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Home\Project.cshtml" />
+    <None Include="wwwroot\images\about.webp" />
   </ItemGroup>
 
 </Project>
