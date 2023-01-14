@@ -22,7 +22,7 @@
                 <nav class="navbar navbar-expand-lg my-navbar">
                     <a class="navbar-brand" href="#">
                         <span class="logo">
-                            <img src="images/logoo.png" class="img-fluid" style="width:40px; margin:-3px 0px 0px 0px;"><span style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:bold">PROLANCER</span>
+                            <img src="~/images/logoo.png" class="img-fluid" style="width:40px; margin:-3px 0px 0px 0px;"><span style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:bold">PROLANCER</span>
                         </span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>S
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li> 
 
 
                                 <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
@@ -64,11 +64,11 @@
         </div>
 
     </header>
-    <div>
+  
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+  
 
 
     <section class="border-top footer text-muted">
