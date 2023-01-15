@@ -8,7 +8,7 @@ namespace FreelancerPlatform.Models
     public class Project
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(255)]
