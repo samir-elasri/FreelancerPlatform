@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -52,10 +54,18 @@
 
 
                         </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <button class="headeer-btn my-2 my-sm-0" type="submit" asp-area="" asp-page="/Authentification">Sign in</button>&nbsp;
-                            <button class="header-btn my-2 my-sm-0" type="submit" asp-area="" asp-page="/Register">Sign up</button>
-                        </form>
+                        @if (Context.Session.GetString("UserEmail") == null)
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="headeer-btn my-2 my-sm-0">Login</a>
+
+                        }
+                        else
+                        {
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                <input type="submit" value="Logout" class="btn btn-danger" />
+                            </form>
+                        }
+
 
                     </div>
                 </nav>

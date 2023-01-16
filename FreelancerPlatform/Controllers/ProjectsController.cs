@@ -39,7 +39,7 @@ namespace FreelancerPlatform.Controllers
                 .Include(p => p.Freelancer)
                 .Include(p => p.Tasks)
                 .Include(p => p.Comments)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)
             {
                 return NotFound();
@@ -94,7 +94,7 @@ namespace FreelancerPlatform.Controllers
             _context.Add(project);
             await _context.SaveChangesAsync();
 
-            var projectId = project.id;
+            var projectId = project.Id;
             for (var i = 0; i < tasks.Count; i++)
             {
                 tasks[i].ProjectId = projectId;
@@ -135,7 +135,7 @@ namespace FreelancerPlatform.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
         {
-            if (id != project.id)
+            if (id != project.Id)
             {
                 return NotFound();
             }
@@ -149,7 +149,7 @@ namespace FreelancerPlatform.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProjectExists(project.id))
+                    if (!ProjectExists(project.Id))
                     {
                         return NotFound();
                     }
@@ -176,7 +176,7 @@ namespace FreelancerPlatform.Controllers
             var project = await _context.Projects
                 .Include(p => p.Category)
                 .Include(p => p.Freelancer)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)
             {
                 return NotFound();
@@ -206,7 +206,7 @@ namespace FreelancerPlatform.Controllers
 
         private bool ProjectExists(int id)
         {
-          return _context.Projects.Any(e => e.id == id);
+          return _context.Projects.Any(e => e.Id == id);
         }
     }
 }
