@@ -107,9 +107,6 @@ namespace FreelancerPlatform.Controllers
             project.Freelancer = null;
             project.FreelancerId = null;
 
-            //project.Description = form["Tasks"];
-            //_context.Tasks.AddRange(tasks);
-
             _context.Add(project);
             await _context.SaveChangesAsync();
 

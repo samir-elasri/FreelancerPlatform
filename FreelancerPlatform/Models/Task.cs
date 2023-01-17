@@ -13,10 +13,11 @@ namespace FreelancerPlatform.Models
         public string Title { get; set; }
 
         [Required]
+        public bool Completed { get; set; } = false;
+
+        [Required]
         [ForeignKey("Project")]
         public int ProjectId { get; set; }
         public Project Project { get; set; }
-
-        
     }
 }
