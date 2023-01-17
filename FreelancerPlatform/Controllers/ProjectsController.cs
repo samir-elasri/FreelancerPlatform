@@ -26,8 +26,15 @@ namespace FreelancerPlatform.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Projects/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+		public async Task<IActionResult> Index2()
+		{
+			var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
+			return View(await applicationDbContext.ToListAsync());
+		}
+
+		// GET: Projects/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Projects == null)
             {
@@ -73,6 +80,18 @@ namespace FreelancerPlatform.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email");
             return View();
+        }
+
+
+        // search view
+        public async Task<IActionResult> Search()
+        {
+            return View();
+        }
+        public async Task<IActionResult> SearchResults(String searchData)
+        {
+            return View("Index",
+            await _context.Projects.Where(i => i.Title.Contains(searchData)).ToListAsync());
         }
 
         // POST: Projects/Create
