@@ -2,12 +2,11 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_ALayout";
 }
 
-<h1>Create</h1>
 
-<h4>Project</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-4 mx-auto">
         <form asp-action="Create">
@@ -39,7 +38,7 @@
                 <label asp-for="Tasks" class="control-label"></label>
                 <textarea cols="10" asp-for="Tasks" class="form-control" placeholder="Saisir les taches séparés par des virgules" style="resize: none"></textarea>
             </div>*@
-            <h3> Tasks:</h3>
+            <h5> Tasks:</h3>
             <div id="tasks-container">
                 <div id="task-template" style="display: none;">
                     <div>
@@ -49,9 +48,9 @@
                     </div>
                 </div>
                 <button type="button" onclick="addTask()">Add Task</button>
-            </div>
+            </div> <br/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="link2" />
             </div>
         </form>
     </div>

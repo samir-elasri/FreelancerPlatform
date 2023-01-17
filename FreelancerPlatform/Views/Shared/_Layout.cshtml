@@ -8,10 +8,10 @@
     <title>@ViewData["Title"] - Prolancer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!--fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+           <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
@@ -41,7 +41,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Project">Projects</a>
+                                <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index2">Projects</a>
 
                             </li>
 
@@ -51,22 +51,48 @@
 
                                 <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
 
-
-
-                        </ul>
+                                 
+                      </ul>
+                        
                         @if (Context.Session.GetString("UserEmail") == null)
                         {
                             <a asp-controller="Account" asp-action="Login" class="headeer-btn my-2 my-sm-0">Login</a>
 
                         }
+
                         else
                         {
-                            <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
-                                <input type="submit" value="Logout" class="btn btn-danger" />
-                            </form>
+                            <div class="action">
+                                    <div class="profile" onclick="menuToggle();">
+                                        <img src="~/images/user.jfif" class="pro-img" />
+                                    </div>
+
+                                    <div class="menu">
+                                        <h3>
+                                            Freelancer Account
+                                            <div>
+                                                Manage My Project
+                                            </div>
+                                        </h3>
+                                        <ul>
+                                            <li>
+                                                <i class="fa-solid fa-user"></i>
+                                                <a href="#">My Profile</a>
+                                            </li>
+                                            <li>
+                                                    
+                                                    <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                                       <i class="fa-solid fa-right-from-bracket"></i>  <input type="submit" value="Logout" class="transparent-input" />
+                                                    </form>
+                                              
+                                            </li>
+                                        </ul>
+                                    </div>
+                                   
+                                </div>
                         }
 
-
+                    
                     </div>
                 </nav>
 
@@ -117,6 +143,13 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function menuToggle() {
+            const toggleMenu = document.querySelector('.menu');
+            toggleMenu.classList.toggle('active')
+        }
     </script>
 </body>
 </html>

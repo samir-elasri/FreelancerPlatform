@@ -2,10 +2,14 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "_LoginLayout";
 }
 
-<h2>Login</h2>
+ 
 
+<div class="center">
+      <h1>Login</h1>
+      
 <form asp-controller="Account" asp-action="Login" method="post">
     <div asp-validation-summary="All"></div>
 
@@ -20,6 +24,8 @@
         <input asp-for="Password" class="form-control" type="password" />
         <span asp-validation-for="Password"></span>
     </div>
-
-    <input type="submit" value="Login" class="btn btn-primary" />
+    <br/>
+    <input type="submit" value="Login" class="btn btn-primary" /><br/><br/>
 </form>
+    </div>
+
