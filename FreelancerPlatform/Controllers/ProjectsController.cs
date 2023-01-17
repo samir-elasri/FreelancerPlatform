@@ -149,33 +149,35 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
         {
+            //Console.WriteLine(id+"="+project);
+
             if (id != project.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            try
             {
-                try
-                {
-                    _context.Update(project);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProjectExists(project.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(project);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProjectExists(project.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+            //}
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", project.CategoryId);
             ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email", project.FreelancerId);
             return View(project);
