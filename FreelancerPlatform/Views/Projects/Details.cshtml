@@ -43,9 +43,7 @@
     <ul>
         @foreach (FreelancerPlatform.Models.Task t in Model.Tasks)
         {
-            <li>
-                @Html.DisplayFor(tTitle => t.Title)
-            </li>
+            <li>@Html.DisplayFor(tTitle => t.Title)</li>
         }
     </ul>
 </div>
