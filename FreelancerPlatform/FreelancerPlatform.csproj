@@ -49,6 +49,14 @@
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Home\Project.cshtml" />
+    <None Include="Views\Projects\Create.cshtml" />
+    <None Include="Views\Projects\Delete.cshtml" />
+    <None Include="Views\Projects\Details.cshtml" />
+    <None Include="Views\Projects\Edit.cshtml" />
+    <None Include="Views\Projects\Index.cshtml" />
+    <None Include="Views\Projects\Index2.cshtml" />
+    <None Include="Views\Projects\Search.cshtml" />
+    <None Include="Views\Projects\View.cshtml" />
     <None Include="wwwroot\images\about.webp" />
   </ItemGroup>
 

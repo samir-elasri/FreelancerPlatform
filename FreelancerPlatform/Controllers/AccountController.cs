@@ -2,6 +2,7 @@
 using FreelancerPlatform.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace FreelancerPlatform.Controllers
 {
     public class AccountController : Controller
@@ -32,9 +33,17 @@ namespace FreelancerPlatform.Controllers
 
             HttpContext.Session.SetString("UserName", userInDb.Name);
             HttpContext.Session.SetString("UserEmail", userInDb.Email);
-
-            return RedirectToAction("Index", "Home");
+            if (userInDb.UserType == "Admin")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
+
+
 
         public IActionResult Logout()
         {

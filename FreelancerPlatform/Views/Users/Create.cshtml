@@ -2,12 +2,10 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_ALayout";
 }
 
-<h1>Create</h1>
 
-<h4>User</h4>
-<hr />
 <div class="row">
     <div class="col-md-4 mx-auto">
         <form asp-action="Create">
@@ -26,9 +24,9 @@
                 <label asp-for="Password" class="control-label"></label>
                 <input type="password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+            </div><br/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="link2" />
             </div>
         </form>
     </div>

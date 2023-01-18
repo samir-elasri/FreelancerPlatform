@@ -48,6 +48,17 @@ namespace FreelancerPlatform.Controllers
             return View();
         }
 
+        // search view
+        public async Task<IActionResult> Search()
+        {
+            return View();
+        }
+        public async Task<IActionResult> SearchResults(String searchData)
+        {
+            return View("Index",
+            await _context.Users.Where(i => i.Name.Contains(searchData)).ToListAsync());
+        }
+
         // POST: Projects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
