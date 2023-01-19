@@ -43,17 +43,7 @@
     <ul>
         @foreach (FreelancerPlatform.Models.Task t in Model.Tasks)
         {
-            <li>
-                @Html.DisplayFor(tTitle => t.Title)
-                @if (t.Completed)
-                {
-                    <input disabled type="checkbox" checked/>
-                }
-                else
-                {
-                    <input disabled type="checkbox"/>
-                }
-            </li>
+            <li>@Html.DisplayFor(tTitle => t.Title)</li>
         }
     </ul>
 </div>

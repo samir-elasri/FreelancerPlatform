@@ -27,14 +27,14 @@ namespace FreelancerPlatform.Controllers
         }
 
 
-		public async Task<IActionResult> Index2()
-		{
-			var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
-			return View(await applicationDbContext.ToListAsync());
-		}
+        public async Task<IActionResult> Index2()
+        {
+            var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
+            return View(await applicationDbContext.ToListAsync());
+        }
 
-		// GET: Projects/Details/5
-		public async Task<IActionResult> Details(int? id)
+        // GET: Projects/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Projects == null)
             {
@@ -217,14 +217,14 @@ namespace FreelancerPlatform.Controllers
             {
                 _context.Projects.Remove(project);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProjectExists(int id)
         {
-          return _context.Projects.Any(e => e.Id == id);
+            return _context.Projects.Any(e => e.Id == id);
         }
     }
 }
