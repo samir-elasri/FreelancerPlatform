@@ -31,6 +31,7 @@ namespace FreelancerPlatform.Controllers
                 return View();
             }
 
+            HttpContext.Session.SetString("UserId", userInDb.Id.ToString());
             HttpContext.Session.SetString("UserName", userInDb.Name);
             HttpContext.Session.SetString("UserEmail", userInDb.Email);
             HttpContext.Session.SetString("UserType", userInDb.UserType);
@@ -64,4 +65,16 @@ namespace FreelancerPlatform.Controllers
         }
     }
 
+    public class FreelancerOnlyAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var session = filterContext.HttpContext.Session;
+            if (session.GetString("UserEmail") == null ||
+                session.GetString("UserType") != "freelancer")
+            {
+                filterContext.Result = new RedirectResult("/Home/Index");
+            }
+        }
+    }
 }

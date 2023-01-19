@@ -27,11 +27,23 @@ namespace FreelancerPlatform.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-
+        [FreelancerOnly]
         public async Task<IActionResult> Index2()
         {
             var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
             return View(await applicationDbContext.ToListAsync());
+
+            /*var freelancerId = HttpContext.Session.GetInt32("FreelancerId");
+            var myProjects = _context.Projects
+                .Include(p => p.Category)
+                .Include(p => p.Freelancer)
+                .Where(p => p.FreelancerId == freelancerId);
+            var otherProjects = _context.Projects
+                .Include(p => p.Category)
+                .Include(p => p.Freelancer)
+                .Where(p => p.FreelancerId != freelancerId);
+            var projects = new { MyProjects = myProjects, OtherProjects = otherProjects };
+            return View(await projects.ToListAsync());*/
         }
 
         // GET: Projects/Details/5
