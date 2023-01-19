@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FreelancerPlatform.Models.Request>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_ALayout";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelancer.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project.Title)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Freelancer.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Title)
+                </td>
+                <td>
+                    <form asp-action="Approve" asp-controller="Requests" class="d-inline-block">
+                        <input type="hidden" name="freelancerId" value="@item.FreelancerId" />
+                        <input type="hidden" name="projectId" value="@item.ProjectId" />
+                        <input type="submit" value="Approve" class="btn btn-primary" />
+                    </form>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                        <input type="submit" value="Reject" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this request?');" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
