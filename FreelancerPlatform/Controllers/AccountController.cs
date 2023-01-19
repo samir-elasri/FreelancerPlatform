@@ -1,7 +1,7 @@
 ﻿using FreelancerPlatform.Data;
 using FreelancerPlatform.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FreelancerPlatform.Controllers
 {
@@ -33,7 +33,9 @@ namespace FreelancerPlatform.Controllers
 
             HttpContext.Session.SetString("UserName", userInDb.Name);
             HttpContext.Session.SetString("UserEmail", userInDb.Email);
-            if (userInDb.UserType == "Admin")
+            HttpContext.Session.SetString("UserType", userInDb.UserType);
+            
+            if (userInDb.UserType == "admin")
             {
                 return RedirectToAction("Index", "Admin");
             }
@@ -43,12 +45,23 @@ namespace FreelancerPlatform.Controllers
             }
         }
 
-
-
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
     }
+    public class AdminOnlyAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var session = filterContext.HttpContext.Session;
+            if (session.GetString("UserEmail") == null ||
+                session.GetString("UserType") != "admin")
+            {
+                filterContext.Result = new RedirectResult("/Home/Index");
+            }
+        }
+    }
+
 }
