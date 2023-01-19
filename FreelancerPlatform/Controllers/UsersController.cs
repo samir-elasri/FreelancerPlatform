@@ -16,6 +16,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects
+        [AdminOnly]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Users.Include(u => u.Projects).Include(u => u.Requests);
@@ -23,6 +24,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Details/5
+        [AdminOnly]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Users == null)
@@ -43,16 +45,20 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Create
+        [AdminOnly]
         public IActionResult Create()
         {
             return View();
         }
 
         // search view
+        [AdminOnly]
         public async Task<IActionResult> Search()
         {
             return View();
         }
+
+        [AdminOnly]
         public async Task<IActionResult> SearchResults(String searchData)
         {
             return View("Index",
@@ -64,6 +70,7 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> Create([Bind("Id, Name, Email, Password")] User user)
         {
             if (ModelState.IsValid)
@@ -76,6 +83,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Edit/5
+        [AdminOnly]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Users == null)
@@ -96,6 +104,7 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> Edit(int id, [Bind("Id, Name, Email, Password")] User user)
         {
             if (id != user.Id)
@@ -127,6 +136,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Delete/5
+        [AdminOnly]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Users == null)
@@ -149,6 +159,7 @@ namespace FreelancerPlatform.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Users == null)
@@ -165,9 +176,12 @@ namespace FreelancerPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AdminOnly]
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
+
+
     }
 }

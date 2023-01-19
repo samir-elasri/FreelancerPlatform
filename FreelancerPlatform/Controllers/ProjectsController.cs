@@ -20,6 +20,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects
+        [AdminOnly]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
@@ -34,6 +35,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Details/5
+        [AdminOnly]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -57,6 +59,7 @@ namespace FreelancerPlatform.Controllers
 
         // Function to add comments to a project in its Details view:
         [HttpPost]
+        [AdminOnly]
         public async Task<IActionResult> CreateComment(IFormCollection form)
         {
             int Id = Int32.Parse(form["ProjectId"]);
@@ -75,6 +78,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Create
+        [AdminOnly]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
@@ -84,6 +88,7 @@ namespace FreelancerPlatform.Controllers
 
 
         // search view
+        [AdminOnly]
         public async Task<IActionResult> Search()
         {
             return View();
@@ -99,6 +104,7 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> Create([Bind("id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project, List<Models.Task> tasks/*, IFormCollection form*/)
         {
             //if (ModelState.IsValid)
@@ -127,6 +133,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Edit/5
+        [AdminOnly]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -149,6 +156,7 @@ namespace FreelancerPlatform.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,CreatedDate,FreelancerId,CategoryId")] Project project)
         {
             //Console.WriteLine(id+"="+project);
@@ -184,6 +192,7 @@ namespace FreelancerPlatform.Controllers
         }
 
         // GET: Projects/Delete/5
+        [AdminOnly]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -206,6 +215,7 @@ namespace FreelancerPlatform.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AdminOnly]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Projects == null)
@@ -222,6 +232,7 @@ namespace FreelancerPlatform.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AdminOnly]
         private bool ProjectExists(int id)
         {
             return _context.Projects.Any(e => e.Id == id);
