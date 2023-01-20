@@ -53,9 +53,13 @@
                 <input type="submit" value="Create" class="link2" />
             </div>
         </form>
+        
     </div>
 </div>
-
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

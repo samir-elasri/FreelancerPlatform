@@ -137,7 +137,11 @@ namespace FreelancerPlatform.Controllers
             //_context.Tasks.AddRange(tasks);
             await _context.SaveChangesAsync();
 
+            TempData["alert"] = "success";
+            TempData["alertMessage"] = "Project created successfully!";
+
             return RedirectToAction(nameof(Index));
+ 
             //}
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", project.CategoryId);
             ViewData["FreelancerId"] = new SelectList(_context.Users, "Id", "Email", project.FreelancerId);

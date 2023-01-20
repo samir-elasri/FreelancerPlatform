@@ -46,11 +46,15 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li> 
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
 
+                            <li>
+                                <a class="nav-link"  style="color: deeppink; margin-right: 100px">@Context.Session.GetString("UserName")</a>
 
-                                 
+                            </li>
+                               
                       </ul>
+                       
                         
                         @if (Context.Session.GetString("UserEmail") == null)
                         {
@@ -60,10 +64,12 @@
 
                         else
                         {
+                           
                             <div class="action">
                                     <div class="profile" onclick="menuToggle();">
                                         <img src="~/images/user.jfif" class="pro-img" />
                                     </div>
+
 
                                     <div class="menu">
                                         <h3>
