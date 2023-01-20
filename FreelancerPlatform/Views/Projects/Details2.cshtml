@@ -7,44 +7,93 @@
 
 <img src="~/images/gestionProjet.png" />
 
-<table class="table table-borderless">
-    <thead>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Title)</td>
-            <td>@Html.DisplayFor(model => model.Title)</td>
-        </tr>
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Description)</td>
-            <td> @Html.DisplayFor(model => model.Description)</td>
-        </tr>
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.CreatedDate)</td>
-            <td>@Html.DisplayFor(model => model.CreatedDate)</td>
-        </tr>
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Freelancer)</td>
-            <td>@Html.DisplayFor(model => model.Freelancer.Email)</td>
-        </tr>
-            <td>@Html.DisplayNameFor(model => model.Category)</td>
-            <td>@Html.DisplayFor(model => model.Category.Name)</td>
-        </tr>
-    </tbody>
-</table>
-
-<form id="task-form">
+<div class="vertical-tab">
+    <div class="row">
+        <div class="col-3">
+            <button class="btn" data-target-tab="#Project">Project</button>
+            <button class="btn active" data-target-tab="#Manage">Manage Project</button>
+            <button class="btn" data-target-tab="#Feedback">Feedback of Admin</button>
+        </div>
+        <div class="col-9">
+            <div class="item" id="Project">
+                <h3>Details</h3>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Title)</td>
+                            <td>@Html.DisplayFor(model => model.Title)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Description)</td>
+                            <td> @Html.DisplayFor(model => model.Description)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.CreatedDate)</td>
+                            <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Freelancer)</td>
+                            <td>@Html.DisplayFor(model => model.Freelancer.Email)</td>
+                        </tr>
+                    <td>@Html.DisplayNameFor(model => model.Category)</td>
+                    <td>@Html.DisplayFor(model => model.Category.Name)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="item active" id="Manage">
+                <h3>Tasks</h3>
+                <form id="task-form">
+                    <ul>
+                        @foreach (var task in Model.Tasks)
+                        {
+                            <table class="table table-borderless">
+                             <thead>
+                                 <tr>
+                                       <th>Name</th>
+                                       <th>Status</th>
+                                   </tr>
+                             </thead>
+                   
+                             <tbody>
+                                    <tr>
+                                        <td>@Html.DisplayFor(tTitle => task.Title)</td>
+                                        <td><input type="checkbox" name="isCompleted" value="@task.Id" onchange="completeTask(this)" @(task.Completed ? "checked" : "") /></td>
+                                    </tr>
+                             </tbody>
+                             </table>
+                             
+                                
+                          
+                        }
+                    </ul>
+                </form>
+            </div>
+            <div class="item" id="Feedback">
+                <h5>Feedback of Admin</h5>
+             
     <ul>
-        @foreach (var task in Model.Tasks)
+        @foreach (var comment in Model.Comments)
         {
             <li>
-                @Html.DisplayFor(tTitle => task.Title)
-                <input type="checkbox" name="isCompleted" value="@task.Id" onchange="completeTask(this)" @(task.Completed ? "checked" : "") />
+                <b>Comment:</b> @comment.Text <br />
             </li>
         }
     </ul>
-</form>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+
+
+
+
+
+  
 <script>
     function completeTask(elem) {
         var taskId = elem.value;
@@ -63,4 +112,22 @@
             }
         });
     }
+</script>
+
+
+ 
+<script>
+    const btns = document.querySelectorAll("[data-target-tab]");
+
+    btns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            btns.forEach((btn) => btn.classList.remove("active"));
+
+            const items = document.querySelectorAll(".item");
+
+            items.forEach((item) => item.classList.remove("active"));
+            btn.classList.add("active");
+            document.querySelector(btn.dataset.targetTab).classList.add("active");
+        });
+    });
 </script>

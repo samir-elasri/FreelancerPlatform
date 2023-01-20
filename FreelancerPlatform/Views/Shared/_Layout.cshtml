@@ -47,12 +47,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
-
-                            <li>
-                                <a class="nav-link"  style="color: deeppink; margin-right: 100px">@Context.Session.GetString("UserName")</a>
-
-                            </li>
-                               
+               
                       </ul>
                        
                         
@@ -64,6 +59,7 @@
 
                         else
                         {
+                            <a class="nav-link" style="color: cornflowerblue; padding-right: 50px; font-weight: bold">@Context.Session.GetString("UserName")</a>
                            
                             <div class="action">
                                     <div class="profile" onclick="menuToggle();">
@@ -79,11 +75,10 @@
                                             </div>
                                         </h3>
                                         <ul>
-                                            <li>
-                                            <i class="fa-solid fa-gauge"></i>
-                                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Details2">Board</a>
-
-                                            </li>
+                                        <li>
+                                            <i class="fa-solid fa-user" style="color: #555"></i>
+                                            <a href="#">My Profile</a>
+                                        </li>
                                             <li>
                                                     
                                                     <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
