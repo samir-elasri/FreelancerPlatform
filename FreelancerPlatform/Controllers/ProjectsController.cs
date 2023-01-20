@@ -249,5 +249,15 @@ namespace FreelancerPlatform.Controllers
         {
             return _context.Projects.Any(e => e.Id == id);
         }
+
+
+
+        // page of manage project
+
+        [FreelancerOnly]
+        public IActionResult AccountUser()
+        {
+            return View();
+        }
     }
 }

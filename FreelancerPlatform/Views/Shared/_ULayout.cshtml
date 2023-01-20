@@ -11,20 +11,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-           <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/user.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body>
 
 
-    <header class="header" >
+    <header class="header">
         <div class="header-inner">
             <div class="container-fluid px-lg-5">
                 <nav class="navbar navbar-expand-lg my-navbar">
                     <a class="navbar-brand" href="#">
                         <span class="logo">
-                            <img src="~/images/logoo.png" class="img-fluid" style="width:40px; margin:-3px 0px 0px 0px;"><span style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:bold">PROLANCER</span>
+                            <span style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:bold; color:#000"><i class="fa fa-tasks box-icon" style="color:blue"></i> Manage Project / <i class="fa-solid fa-star" style="color: yellow"></i> Project</span>
                         </span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,24 +34,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">AboutUs</a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index2">Projects</a>
-
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li> 
+                           
 
 
-                                 
-                      </ul>
-                        
+
+                        </ul>
+
                         @if (Context.Session.GetString("UserEmail") == null)
                         {
                             <a asp-controller="Account" asp-action="Login" class="headeer-btn my-2 my-sm-0">Login</a>
@@ -61,37 +51,36 @@
                         else
                         {
                             <div class="action">
-                                    <div class="profile" onclick="menuToggle();">
-                                        <img src="~/images/user.jfif" class="pro-img" />
-                                    </div>
-
-                                    <div class="menu">
-                                        <h3>
-                                            Freelancer Account
-                                            <div>
-                                                Manage My Project
-                                            </div>
-                                        </h3>
-                                        <ul>
-                                            <li>
-                                            <i class="fa-solid fa-gauge"></i>
-                                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="AccountUser">Board</a>
-
-                                            </li>
-                                            <li>
-                                                    
-                                                    <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
-                                                       <i class="fa-solid fa-right-from-bracket"></i>  <input type="submit" value="Logout" class="transparent-input" />
-                                                    </form>
-                                              
-                                            </li>
-                                        </ul>
-                                    </div>
-                                   
+                                <div class="profile" onclick="menuToggle();">
+                                    <img src="~/images/user.jfif" class="pro-img" />
                                 </div>
+
+                                <div class="menu">
+                                    <h3>
+                                        Freelancer Account
+                                        <div>
+                                            Manage My Project
+                                        </div>
+                                    </h3>
+                                    <ul>
+                                        <li>
+                                            <i class="fa-solid fa-user"></i>
+                                            <a href="#">My Profile</a>
+                                        </li>
+                                        <li>
+
+                                            <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                                <i class="fa-solid fa-right-from-bracket"></i>  <input type="submit" value="Logout" class="transparent-input" />
+                                            </form>
+
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
                         }
 
-                    
+
                     </div>
                 </nav>
 
@@ -99,11 +88,11 @@
         </div>
 
     </header>
-  
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-  
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
 
 
     <section class="border-top footer text-muted">
