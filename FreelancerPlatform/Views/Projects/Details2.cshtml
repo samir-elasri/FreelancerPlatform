@@ -12,7 +12,6 @@
     </thead>
     <tbody>
         <tr>
-
             <td>@Html.DisplayNameFor(model => model.Title)</td>
             <td>@Html.DisplayFor(model => model.Title)</td>
         </tr>
@@ -24,26 +23,44 @@
             <td>@Html.DisplayNameFor(model => model.CreatedDate)</td>
             <td>@Html.DisplayFor(model => model.CreatedDate)</td>
         </tr>
-    <td>@Html.DisplayNameFor(model => model.Freelancer)</td>
-    <td>@Html.DisplayFor(model => model.Freelancer.Email)</td>
-    </tr>
-    <td>@Html.DisplayNameFor(model => model.Category)</td>
-    <td>@Html.DisplayFor(model => model.Category.Name)</td>
-    </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Freelancer)</td>
+            <td>@Html.DisplayFor(model => model.Freelancer.Email)</td>
+        </tr>
+            <td>@Html.DisplayNameFor(model => model.Category)</td>
+            <td>@Html.DisplayFor(model => model.Category.Name)</td>
+        </tr>
     </tbody>
 </table>
 
-<form asp-controller="Projects" asp-action="CompleteTasks" method="post">
-    <h4>List of tasks:</h4>
+<form id="task-form">
     <ul>
         @foreach (var task in Model.Tasks)
         {
-            <div class="form-group">
-                <input type="hidden" name="taskIds" value="@task.Id" />
-                <label>@task.Title</label>
-                <input type="checkbox" name="isCompleted" value="@task.Completed" @(task.Completed ? "checked" : "") />
-            </div>
+            <li>
+                @Html.DisplayFor(tTitle => task.Title)
+                <input type="checkbox" name="isCompleted" value="@task.Id" onchange="completeTask(this)" @(task.Completed ? "checked" : "") />
+            </li>
         }
     </ul>
-    <input type="submit" value="Save Changes" />
 </form>
+
+<script>
+    function completeTask(elem) {
+        var taskId = elem.value;
+        var isCompleted = elem.checked;
+        // alert("taskId: "+taskId+", completed: "+isCompleted);
+        $.ajax({
+            url: '/Projects/CompleteTask',
+            type: 'POST',
+            data: { taskId: taskId, isCompleted: isCompleted },
+            success: function (data) {
+                if (data.success) {
+                    console.log('Task updated successfully');
+                } else {
+                    console.log('Error updating task');
+                }
+            }
+        });
+    }
+</script>

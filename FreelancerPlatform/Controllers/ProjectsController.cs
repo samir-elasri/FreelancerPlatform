@@ -262,16 +262,18 @@ namespace FreelancerPlatform.Controllers
         }
 
         [HttpPost]
-        public IActionResult CompleteTasks(IFormCollection form)
+        public async Task<IActionResult> CompleteTask(int taskId, bool isCompleted)
         {
-            var taskIds = form["isCompleted"].ToArray();
-            var tasks = _context.Tasks.Where(t => taskIds.Contains(t.Id.ToString()));
-            foreach (var task in tasks)
+            var task = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == taskId);
+            // Console.WriteLine(task.Id + ", " + task.Title + ", " + task.Completed);
+            if (task == null)
             {
-                task.Completed = true;
+                return RedirectToAction(nameof(Index2));
             }
-            _context.SaveChanges();
-            return RedirectToAction("Details2", new { id = tasks.FirstOrDefault().ProjectId });
+            task.Completed = isCompleted;
+            _context.Tasks.Update(task);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details2", new { task.ProjectId });
         }
 
 

@@ -19,17 +19,5 @@ function removeTask(removeButton) {
     taskContainer.parentNode.removeChild(taskContainer);
 }
 
-function updateTask(taskId) {
-    var checkbox = document.getElementById("task-checkbox-" + taskId);
-    var isCompleted = checkbox.checked;
 
-    $.ajax({
-        type: "POST",
-        url: "/Projects/UpdateTask",
-        data: { taskId: taskId, isCompleted: isCompleted },
-        success: function (response) {
-            console.log(response);
-        },
-        async: true
-    });
-}
+
