@@ -32,18 +32,6 @@ namespace FreelancerPlatform.Controllers
         {
             var applicationDbContext = _context.Projects.Include(p => p.Category).Include(p => p.Freelancer);
             return View(await applicationDbContext.ToListAsync());
-
-            /*var freelancerId = HttpContext.Session.GetInt32("FreelancerId");
-            var myProjects = _context.Projects
-                .Include(p => p.Category)
-                .Include(p => p.Freelancer)
-                .Where(p => p.FreelancerId == freelancerId);
-            var otherProjects = _context.Projects
-                .Include(p => p.Category)
-                .Include(p => p.Freelancer)
-                .Where(p => p.FreelancerId != freelancerId);
-            var projects = new { MyProjects = myProjects, OtherProjects = otherProjects };
-            return View(await projects.ToListAsync());*/
         }
 
         // GET: Projects/Details/5
@@ -61,6 +49,25 @@ namespace FreelancerPlatform.Controllers
                 .Include(p => p.Tasks)
                 .Include(p => p.Comments)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return View(project);
+        }
+
+        // page of manage project
+
+        [FreelancerOnly]
+        public async Task<IActionResult> Details2(int? id)
+        {
+            var project = await _context.Projects
+               .Include(p => p.Category)
+               .Include(p => p.Freelancer)
+               .Include(p => p.Tasks)
+               .Include(p => p.Comments)
+               .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)
             {
                 return NotFound();
@@ -254,14 +261,19 @@ namespace FreelancerPlatform.Controllers
             return _context.Projects.Any(e => e.Id == id);
         }
 
-
-
-        // page of manage project
-
-        [FreelancerOnly]
-        public IActionResult AccountUser()
+        [HttpPost]
+        public IActionResult CompleteTasks(IFormCollection form)
         {
-            return View();
+            var taskIds = form["isCompleted"].ToArray();
+            var tasks = _context.Tasks.Where(t => taskIds.Contains(t.Id.ToString()));
+            foreach (var task in tasks)
+            {
+                task.Completed = true;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Details2", new { id = tasks.FirstOrDefault().ProjectId });
         }
+
+
     }
 }

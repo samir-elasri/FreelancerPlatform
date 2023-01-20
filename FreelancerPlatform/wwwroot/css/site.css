@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.my-project {
+    background-color: #F5A623;
+}
+
+.other-project {
+    background-color: #101728;
+}

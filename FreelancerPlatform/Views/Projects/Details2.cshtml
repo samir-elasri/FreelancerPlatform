@@ -1,0 +1,49 @@
+﻿@model FreelancerPlatform.Models.Project
+
+@{
+    ViewData["Title"] = "Board";
+    Layout = "_ULayout";
+}
+
+<img src="~/images/gestionProjet.png" />
+
+<table class="table table-borderless">
+    <thead>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Html.DisplayNameFor(model => model.Title)</td>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Description)</td>
+            <td> @Html.DisplayFor(model => model.Description)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.CreatedDate)</td>
+            <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+        </tr>
+    <td>@Html.DisplayNameFor(model => model.Freelancer)</td>
+    <td>@Html.DisplayFor(model => model.Freelancer.Email)</td>
+    </tr>
+    <td>@Html.DisplayNameFor(model => model.Category)</td>
+    <td>@Html.DisplayFor(model => model.Category.Name)</td>
+    </tr>
+    </tbody>
+</table>
+
+<form asp-controller="Projects" asp-action="CompleteTasks" method="post">
+    <h4>List of tasks:</h4>
+    <ul>
+        @foreach (var task in Model.Tasks)
+        {
+            <div class="form-group">
+                <input type="hidden" name="taskIds" value="@task.Id" />
+                <label>@task.Title</label>
+                <input type="checkbox" name="isCompleted" value="@task.Completed" @(task.Completed ? "checked" : "") />
+            </div>
+        }
+    </ul>
+    <input type="submit" value="Save Changes" />
+</form>
