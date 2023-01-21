@@ -24,6 +24,10 @@ namespace FreelancerPlatform.Controllers
         {
             var userInDb = _context.Users.SingleOrDefault(u => u.Email == user.Email && u.Password == user.Password);
 
+            var ProjectsCount = _context.Projects.Count();
+            var RequestsCount = _context.Requests.Count();
+            var FreelancersCount = _context.Users.Where(u => u.UserType == "Freelancer").Count();
+
             if (userInDb == null)
             {
                 ModelState.AddModelError("Email", "Invalid Email");
@@ -38,7 +42,7 @@ namespace FreelancerPlatform.Controllers
             
             if (userInDb.UserType == "admin")
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Admin", new { ProjectsCount = ProjectsCount, RequestsCount = RequestsCount, FreelancersCount = FreelancersCount });
             }
             else
             {

@@ -6,9 +6,12 @@ namespace FreelancerPlatform.Controllers
     public class AdminController : Controller
     {
         // GET: AdminController
-        public ActionResult Index()
+        public ActionResult Index(int ProjectsCount, int RequestsCount, int FreelancersCount)
         {
-            return View();
+			ViewBag.ProjectsCount = ProjectsCount;
+			ViewBag.RequestsCount = RequestsCount;
+			ViewBag.FreelancersCount = FreelancersCount;
+			return View();
         }
 
 
